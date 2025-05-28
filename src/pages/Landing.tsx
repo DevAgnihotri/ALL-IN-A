@@ -185,13 +185,14 @@ const Landing = () => {
 						<p className="text-sm text-gray-600 font-normal tracking-wide">Mental Health Platform</p>
 					</div>
 				</motion.div>
-				
-				<motion.div
+						<motion.div
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
-				>					<Link
+					className="hidden sm:block"
+				>
+					<Link
 						to="/login"
-						className="px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-green-700 hover:to-emerald-800 border border-green-500/20"
+						className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:from-green-700 hover:to-emerald-800 border border-green-500/20 text-sm whitespace-nowrap"
 					>
 						Sign In / Sign Up
 					</Link>
@@ -224,32 +225,7 @@ const Landing = () => {
 						Evidence-based treatment solutions with licensed professionals. 
 						Personalized care plans designed for your mental wellness journey.
 					</motion.p>
-					
-					{/* CTA Buttons */}
-					<motion.div 
-						className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-						variants={itemVariants}
-					>
-						<Link to="/auth">
-							<motion.button
-								className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 whitespace-nowrap min-w-[200px]"
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-							>
-								Get Started Free
-								<ArrowRight className="inline-block ml-2 w-5 h-5" />
-							</motion.button>
-						</Link>
-						<Link to="/auth">
-							<motion.button
-								className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-600 hover:text-white transition-all duration-300 whitespace-nowrap min-w-[200px]"
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-							>
-								Sign In
-							</motion.button>
-						</Link>
-					</motion.div>
+		
 				</motion.div>{/* Features Section */}
 				<motion.section className="mb-16 w-full max-w-7xl" variants={itemVariants}>					<motion.h2 
 						className="text-4xl font-bold mb-12 text-gray-800"
