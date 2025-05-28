@@ -380,31 +380,8 @@ export const WellnessMetrics = () => {
             className="w-8 h-8 object-contain mr-2" 
           />
           <h2 className="text-xl font-bold text-gray-900">
-            {isQuizCompleted ? 'Your ALL&nbsp;IN&nbsp;A Personalized Metrics' : 'ALL IN A Wellness Metrics'}
-          </h2>
-        </div>
-        
-        {isQuizCompleted && personalizationInsights && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 space-y-2">
-            <p className="text-sm font-medium text-blue-800">
-              Personalization Quiz Results:
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <p className="text-blue-700">
-                <strong>Primary Focus:</strong> {personalizationInsights.primaryConcern}
-              </p>
-              <p className="text-blue-700">
-                <strong>Current Mood:</strong> {personalizationInsights.mood}
-              </p>
-              <p className="text-blue-700">
-                <strong>Recommended Therapy:</strong> {personalizationInsights.recommendations.therapyType}
-              </p>
-              <p className="text-blue-700">
-                <strong>Preferred Time:</strong> {personalizationInsights.preferredTime}
-              </p>
-            </div>
-          </div>
-        )}
+            {isQuizCompleted ? 'Your ALL IN A Personalized Metrics' : 'ALL IN A Wellness Metrics'}
+          </h2>        </div>
         
         {lastUpdated && (
           <div className="flex items-center text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2">
