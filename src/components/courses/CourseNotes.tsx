@@ -132,18 +132,16 @@ export const CourseNotes: React.FC<CourseNotesProps> = ({
   );
 
   return (
-    <div className="space-y-6">
-      {/* Module Header */}
-      <div className="flex items-center justify-between">
-        <div>
+    <div className="space-y-6">      {/* Module Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex-1">
           <h3 className="text-lg font-semibold text-gray-900">{module.title}</h3>
           <p className="text-sm text-gray-600">Reading time: {module.duration}</p>
         </div>
-        <div className="flex items-center space-x-3">
-          {!isCompleted && (
+        <div className="flex items-center space-x-3 flex-shrink-0">          {!isCompleted && (
             <Button
               onClick={onComplete}
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-green-600 hover:bg-green-700 whitespace-nowrap"
               size="sm"
             >
               <CheckCircle className="w-4 h-4 mr-2" />

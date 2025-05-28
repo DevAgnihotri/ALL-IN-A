@@ -35,28 +35,25 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-      </div>
-
-      {/* Video Info */}
-      <div className="flex items-center justify-between">
-        <div>
+      </div>      {/* Video Info */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex-1">
           <h3 className="text-lg font-semibold text-gray-900">{module.title}</h3>
           <p className="text-sm text-gray-600">Duration: {module.duration}</p>
         </div>
-        <div className="flex items-center space-x-3">
-          <Button
+        <div className="flex items-center space-x-3 flex-shrink-0">          <Button
             variant="outline"
             size="sm"
             onClick={() => window.open(content.videoUrl, '_blank')}
+            className="whitespace-nowrap"
           >
             <ExternalLink className="w-4 h-4 mr-2" />
             Watch on YouTube
           </Button>
-          
-          {!isCompleted && (
+            {!isCompleted && (
             <Button
               onClick={onComplete}
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-green-600 hover:bg-green-700 whitespace-nowrap"
               size="sm"
             >
               <CheckCircle className="w-4 h-4 mr-2" />
