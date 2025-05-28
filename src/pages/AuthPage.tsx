@@ -164,13 +164,12 @@ export default function AuthPage() {
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-200 to-blue-200">
       <div className={`auth-container ${isActive ? 'active' : ''}`}>
         {/* Login Form */}        <div className="form-box login">
-          <form onSubmit={handleLoginSubmit}>            <div className="flex items-center justify-center mb-6">
-              <img 
+          <form onSubmit={handleLoginSubmit}>            <div className="flex items-center justify-center mb-6">              <img 
                 src="/logo.png" 
-                alt="ALL&nbsp;IN&nbsp;A Logo" 
+                alt="All in Awareness Logo" 
                 className="w-12 h-12 object-contain mr-3"
               />
-              <h1 className="text-2xl font-bold">ALL&nbsp;IN&nbsp;A Login</h1>
+              <h1 className="text-2xl font-bold">ALL IN A Login</h1>
             </div>
             <div className="input-box">
               <input
@@ -216,11 +215,10 @@ export default function AuthPage() {
         </div>
 
         {/* Register Form */}        <div className="form-box register">
-          <form onSubmit={handleRegisterSubmit}>
-            <div className="flex items-center justify-center mb-6">
+          <form onSubmit={handleRegisterSubmit}>            <div className="flex items-center justify-center mb-6">
               <img 
                 src="/logo.png" 
-                alt="ALL&nbsp;IN&nbsp;A Logo" 
+                alt="All in Awareness Logo" 
                 className="w-12 h-12 object-contain mr-3"
               />
               <h1 className="text-2xl font-bold">Registration</h1>
@@ -278,14 +276,14 @@ export default function AuthPage() {
 
         {/* Toggle Box */}
         <div className="toggle-box">          <div className="toggle-panel toggle-left">            <h1>Hello, and Welcome!</h1>
-            <p>Don't have an ALL&nbsp;IN&nbsp;A account?</p>
+            <p>Don't have an All in Awareness account?</p>
             <button className="btn register-btn" onClick={() => setIsActive(true)}>
               Register
             </button>
           </div>
           <div className="toggle-panel toggle-right">
             <h1>Welcome Back!</h1>
-            <p>Already have an ALL&nbsp;IN&nbsp;A account?</p>
+            <p>Already have an All in Awareness account?</p>
             <button className="btn login-btn" onClick={() => setIsActive(false)}>
               Login
             </button></div>

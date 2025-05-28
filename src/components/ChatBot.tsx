@@ -219,7 +219,7 @@ export const ChatBot = () => {
           isOpen ? 'scale-0' : 'scale-100'
         }`}
       >
-        <img src="/logo.png" alt="ALL&nbsp;IN&nbsp;A Logo" className="w-6 h-6 object-contain" />
+        <img src="/logo.png" alt="All in Awareness Logo" className="w-6 h-6 object-contain" />
       </Button>
 
       {/* Chat Window */}
@@ -228,7 +228,7 @@ export const ChatBot = () => {
           <CardHeader className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-t-lg p-4 flex-shrink-0">
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center text-base">
-                <img src="/logo.png" alt="ALL IN A Logo" className="w-5 h-5 mr-2 object-contain" />
+                <img src="/logo.png" alt="All in Awareness Logo" className="w-5 h-5 mr-2 object-contain" />
                 ALL IN A Companion
               </CardTitle>
               <Button

@@ -279,9 +279,8 @@ const Landing = () => {
 						repeat: Infinity, 
 						ease: "linear" 
 					}}
-				>
-					<img 
-						src="/front_logo.png" 
+				>					<img 
+						src="/logo.png" 
 						alt="All in Awareness Logo" 
 						className="w-96 h-96 object-contain opacity-5 drop-shadow-2xl"
 					/>
@@ -316,9 +315,8 @@ const Landing = () => {
 					className="flex items-center space-x-4"
 					whileHover={{ scale: 1.05 }}
 					transition={{ type: "spring", stiffness: 300 }}
-				>
-					<motion.img 
-						src="/front_logo.png" 
+				>					<motion.img 
+						src="/logo.png" 
 						alt="All in Awareness Logo" 
 						className="w-14 h-14 object-contain drop-shadow-lg"
 						animate={{ rotate: [0, 5, -5, 0] }}
@@ -801,9 +799,8 @@ const Landing = () => {
 						className="flex items-center justify-center gap-4 mb-8"
 						whileHover={{ scale: 1.05 }}
 						transition={{ type: "spring", stiffness: 300 }}
-					>
-						<motion.img 
-							src="/front_logo.png" 
+					>						<motion.img 
+							src="/logo.png" 
 							alt="All in Awareness Logo" 
 							className="w-12 h-12 object-contain drop-shadow-lg"
 							animate={{ rotate: [0, 5, -5, 0] }}

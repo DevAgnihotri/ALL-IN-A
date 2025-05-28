@@ -21,7 +21,7 @@ export const Hero = ({ onStartJourney }: HeroProps) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full text-green-700 text-sm font-medium mb-8">
-            <img src="/logo.png" alt="ALL&nbsp;IN&nbsp;A Logo" className="w-4 h-4 mr-2 object-contain" />
+            <img src="/logo.png" alt="All in Awareness Logo" className="w-4 h-4 mr-2 object-contain" />
             Welcome to ALL&nbsp;IN&nbsp;A - Your Mental Health Platform
           </div>
           

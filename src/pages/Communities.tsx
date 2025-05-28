@@ -86,7 +86,7 @@ export const Communities = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-16">          <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full text-blue-700 text-sm font-medium mb-8">
-            <img src="/logo.png" alt="ALL&nbsp;IN&nbsp;A Logo" className="w-4 h-4 mr-2 object-contain" />
+            <img src="/logo.png" alt="All in Awareness Logo" className="w-4 h-4 mr-2 object-contain" />
             Connect with ALL&nbsp;IN&nbsp;A community members
           </div>
           

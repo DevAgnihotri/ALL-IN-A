@@ -41,10 +41,10 @@ export const Navigation = ({ currentSection, onSectionChange }: NavigationProps)
           <div className="flex items-center space-x-2">
             <img 
               src="/logo.png" 
-              alt="ALL IN A Logo" 
+              alt="All in Awareness Logo" 
               className="w-8 h-8 object-contain"
             />
-            <span className="font-bold text-xl text-gray-800">ALL&nbsp;IN&nbsp;A</span>
+            <span className="font-bold text-xl text-gray-800">All in Awareness</span>
           </div>
 
           {/* Desktop Menu */}

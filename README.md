@@ -1,182 +1,238 @@
-# ALL IN A - Mental Health & Wellness Platform
+# All in Awareness - Maternal Mental Health Platform
 
 <div align="center">
-  <img src="public/logo.png" alt="ALL IN A Logo" width="100" height="100" />
+  <img src="public/logo.png" alt="All in Awareness Logo" width="120" height="120" />
   
-  **ALL IN A** is a comprehensive mental health and wellness platform that empowers users to take control of their wellness journey through personalized tools, expert support, AI-powered assistance, and evidence-based interventions.
+  **All in Awareness** is a specialized platform focused on maternal mental health that empowers mothers through personalized care, expert support, and evidence-based interventions for postpartum depression, pregnancy anxiety, and perinatal mood disorders.
   
-  [![GitHub repo](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/DevAgnihotri/ALL-IN-A)
-  [![React](https://img.shields.io/badge/React-18.0+-blue?logo=react)](https://reactjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?logo=typescript)](https://www.typescriptlang.org/)
-  [![Firebase](https://img.shields.io/badge/Firebase-Integrated-orange?logo=firebase)](https://firebase.google.com/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0+-blue?logo=tailwindcss)](https://tailwindcss.com/)
+  [![React](https://img.shields.io/badge/React-18.3+-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Firebase](https://img.shields.io/badge/Firebase-11.8+-FF6B35?style=for-the-badge&logo=firebase&logoColor=white)](https://firebase.google.com/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+  [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.0+-BB4B96?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 </div>
 
-## 🌟 Features
+---
 
-### 🤖 AI-Powered Mental Health Support
+## **Core Features**
 
-- **Intelligent ChatBot**: 50+ pre-programmed responses for mental health support
-- **Smart Navigation**: Voice commands and quick actions for accessibility
-- **Crisis Support**: Immediate resources and emergency contact integration
-- **Personalized Conversations**: Context-aware responses based on user needs
+### **Specialized Maternal Mental Health Care**
 
-### 📊 Comprehensive Health Tracking
+**Postpartum Depression Focus**  
+Targeted support for the 1 in 7 mothers experiencing PPD with evidence-based interventions.
 
-- **Mental Health Assessments**: EPDS (Edinburgh Postnatal Depression Scale) and other validated tools
-- **Wellness Metrics**: Real-time tracking of psychological and physiological indicators
-- **Health Dashboard**: Visual representation of progress and trends
-- **Goal Setting**: Personalized wellness goals with progress tracking
+**Pregnancy Anxiety Support**  
+Comprehensive tools and resources for managing prenatal stress and anxiety throughout pregnancy.
 
-### 🎓 Educational Resources
+**Perinatal Mood Disorders**  
+Full spectrum care addressing the complete range of maternal mental health challenges.
 
-- **Mental Health Courses**: Evidence-based educational content
-- **Interactive Video Player**: Engaging multimedia learning experience
-- **Course Notes**: Personal note-taking and progress tracking
-- **Content Recommendations**: AI-curated content based on user needs
+**Birth Trauma Recovery**  
+Specialized approaches for processing and healing from traumatic birth experiences.
 
-### 👩‍⚕️ Professional Support
+### **Advanced Wellness Tracking**
 
-- **Therapist Booking System**: Schedule appointments with licensed professionals
-- **Calendar Integration**: Google Calendar sync for appointment management
-- **Booking Confirmation**: Automated confirmation and reminder system
-- **Professional Profiles**: Detailed therapist information and specializations
+**EPDS Assessment**  
+Edinburgh Postnatal Depression Scale integration with personalized care recommendations.
 
-### 👥 Community & Social Features
+**Comprehensive Metrics**  
+Track mood patterns, sleep quality, and other critical maternal health indicators.
 
-- **Support Communities**: Connect with others on similar wellness journeys
-- **Peer Support**: Moderated discussion forums and group activities
-- **Resource Sharing**: Community-driven content and experience sharing
+**Progress Visualization**  
+Clear analytics and trend monitoring to track your healing journey over time.
 
-### 🔐 Privacy & Security
+**Personalization Engine**  
+Custom care plans developed based on your specific maternal mental health needs.
 
-- **Firebase Authentication**: Secure user authentication and authorization
-- **HIPAA-Compliant**: Privacy-focused design for sensitive health data
-- **Data Encryption**: End-to-end encryption for user information
-- **Document Management**: Secure upload and storage of personal documents
+### **Expert Network Access**
 
-## 🚀 Technology Stack
+**Certified Perinatal Specialists**  
+Connect with therapists specifically trained in maternal mental health best practices.
 
-### Frontend
+**Seamless Booking System**  
+Integrated appointment scheduling with qualified maternal mental health professionals.
 
-- **React 18** - Modern UI library with hooks and functional components
-- **TypeScript** - Type-safe development environment
-- **Vite** - Fast build tool and development server
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Beautiful, accessible UI components
+**Calendar Integration**  
+Google Calendar synchronization for streamlined appointment management.
 
-### Backend & Services
+**Flexible Support Options**  
+Access to virtual consultations, in-person sessions, and emergency care services.
 
-- **Firebase Firestore** - NoSQL database for real-time data
-- **Firebase Authentication** - User management and security
-- **Firebase Storage** - File upload and document management
-- **Google Calendar API** - Appointment scheduling integration
+### **Community Support System**
 
-### Development Tools
+**Peer Support Networks**  
+Connect with other mothers navigating similar mental health challenges.
 
-- **ESLint** - Code linting and quality assurance
-- **PostCSS** - CSS processing and optimization
-- **Bun** - Fast package manager and runtime
+**Moderated Group Sessions**  
+Professionally guided maternal support groups with structured therapeutic approaches.
 
-## 📦 Installation & Setup
+**Resource Sharing**  
+Community-curated resources covering pregnancy, postpartum, and beyond.
 
-### Prerequisites
+**Inclusive Accessibility**  
+Supportive environments designed for mothers at every stage of their journey.
 
-- Node.js 18+ or Bun
+### **Evidence-Based Education**
+
+**Maternal Wellness Curriculum**  
+Specialized educational content developed for pregnancy and postpartum mental health.
+
+**Interactive Learning Modules**  
+Engaging multimedia resources with evidence-based therapeutic techniques.
+
+**Expert-Developed Content**  
+Materials created by board-certified perinatal mental health specialists.
+
+**Adaptive Learning Paths**  
+Personalized educational journeys tailored to your specific needs and progress.
+
+### **Enterprise-Grade Security**
+
+**Firebase Authentication**  
+Industry-standard user authentication with multi-factor security options.
+
+**HIPAA-Compliant Design**  
+Privacy-focused architecture specifically designed for sensitive health information.
+
+**End-to-End Encryption**  
+Advanced data protection ensuring complete confidentiality of personal information.
+
+**Secure Document Management**  
+Protected upload and storage systems for personal health documents and records.
+
+---
+
+## **Technology Architecture**
+
+### **Frontend Stack**
+
+- **React 18** - Modern component-based UI framework with concurrent rendering
+- **TypeScript** - Type-safe development environment with enhanced code reliability
+- **Vite** - Lightning-fast build tooling and optimized development server
+- **Tailwind CSS** - Utility-first styling framework for rapid UI development
+- **shadcn/ui** - Professional, accessible component library with modern design
+
+### **Backend Infrastructure**
+
+- **Firebase Firestore** - Scalable NoSQL database with real-time synchronization
+- **Firebase Authentication** - Comprehensive user management and security layer
+- **Firebase Storage** - Secure file upload and document management system
+- **Google Calendar API** - Professional appointment scheduling integration
+
+### **Development Environment**
+
+- **ESLint** - Advanced code quality assurance and error prevention
+- **PostCSS** - Modern CSS processing and optimization pipeline
+- **Bun** - High-performance package manager and JavaScript runtime
+
+---
+
+## **Quick Start Guide**
+
+### **Prerequisites**
+
+- Node.js 18+ or Bun runtime environment
 - Firebase project with Firestore and Authentication enabled
-- Google Calendar API credentials (optional, for booking features)
+- Google Calendar API credentials (optional for booking features)
 
-### 1. Clone the Repository
+### **Installation**
 
 ```bash
+# Clone the repository
 git clone https://github.com/DevAgnihotri/ALL-IN-A.git
 cd ALL-IN-A
-```
 
-### 2. Install Dependencies
-
-```bash
-# Using npm
-npm install
-
-# Or using bun (recommended)
+# Install dependencies (recommended: Bun)
 bun install
+
+# Alternative: npm
+npm install
 ```
 
-### 3. Environment Configuration
+### **Environment Setup**
 
-Create a `.env.local` file in the root directory:
+Create `.env.local` in your project root:
 
 ```env
 # Firebase Configuration
-VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
 VITE_FIREBASE_PROJECT_ID=your_project_id
 VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 
-# Google Calendar API (Optional)
+# Google Calendar Integration (Optional)
 VITE_GOOGLE_CLIENT_ID=your_google_client_id
 ```
 
-### 4. Firebase Setup
+### **Firebase Setup**
 
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-2. Enable Authentication (Email/Password, Google)
-3. Create Firestore database
-4. Set up Storage rules
-5. Deploy the provided `firestore.rules`
+1. **Create Project**: Initialize at [Firebase Console](https://console.firebase.google.com/)
+2. **Enable Authentication**: Configure Email/Password and Google providers
+3. **Setup Firestore**: Create database with appropriate security rules
+4. **Configure Storage**: Set up file storage with proper access controls
+5. **Deploy Rules**: Apply the provided `firestore.rules` and `storage.rules`
 
-### 5. Start Development Server
+### **Development Server**
 
 ```bash
-# Using npm
-npm run dev
-
-# Using bun
+# Start development environment
 bun dev
+
+# Alternative: npm
+npm run dev
 ```
 
-Visit `http://localhost:5173` to see the application running.
+Access your application at `http://localhost:5173`
 
-## 📁 Project Structure
+---
+
+## **Project Structure**
 
 ```
 src/
-├── components/           # React components
-│   ├── ui/              # Reusable UI components (shadcn/ui)
-│   ├── courses/         # Course-related components
-│   ├── ChatBot.tsx      # AI chatbot component
+├── components/           # Reusable React components
+│   ├── ui/              # Core UI components (shadcn/ui)
+│   ├── courses/         # Educational content components
+│   ├── ChatBot.tsx      # AI-powered support assistant
 │   ├── Profile.tsx      # User profile management
-│   ├── HealthMetrics.tsx # Health tracking dashboard
+│   ├── HealthMetrics.tsx # Wellness tracking dashboard
 │   └── ...
 ├── contexts/            # React context providers
-│   ├── AuthContext.tsx  # Authentication context
+│   ├── AuthContext.tsx  # Authentication state management
 │   └── ...
 ├── lib/                 # Utility functions and services
-│   ├── firebase.ts      # Firebase configuration
-│   ├── googleCalendar.ts # Google Calendar integration
+│   ├── firebase.ts      # Firebase configuration and setup
+│   ├── googleCalendar.ts # Calendar integration services
 │   └── ...
-├── pages/               # Page components
-│   ├── Landing.tsx      # Landing page
-│   ├── Courses.tsx      # Courses page
+├── pages/               # Application page components
+│   ├── Landing.tsx      # Marketing and information landing page
+│   ├── Courses.tsx      # Educational content interface
 │   └── ...
-└── data/                # Static data and configurations
+└── data/                # Static configurations and content
 ```
 
-## 🌐 Deployment
+---
 
-### Firebase Hosting
+## **Deployment Options**
+
+### **Vercel (Recommended)**
+
+1. Connect GitHub repository to [Vercel](https://vercel.com)
+2. Configure environment variables in project settings
+3. Enable automatic deployments on repository updates
+
+### **Firebase Hosting**
 
 ```bash
 # Install Firebase CLI
 npm install -g firebase-tools
 
-# Login to Firebase
+# Authenticate with Firebase
 firebase login
 
-# Initialize hosting
+# Initialize hosting configuration
 firebase init hosting
 
 # Build and deploy
@@ -184,58 +240,59 @@ npm run build
 firebase deploy
 ```
 
-### Vercel (Recommended)
+### **Alternative Platforms**
 
-1. Connect your GitHub repository to [Vercel](https://vercel.com)
-2. Configure environment variables in Vercel dashboard
-3. Deploy automatically on every commit
+- **Netlify**: GitHub integration with automatic deployments
+- **AWS Amplify**: Full-stack hosting with integrated CI/CD pipeline
+- **Docker**: Containerized deployment using provided Dockerfile
 
-### Other Platforms
+---
 
-- **Netlify**: Connect GitHub repo for automatic deployments
-- **AWS Amplify**: Full-stack hosting with CI/CD
-- **Docker**: Use provided Dockerfile for containerized deployment
+## **Contributing Guidelines**
 
-## 🤝 Contributing
+We welcome contributions to improve All in Awareness. Please follow these standards:
 
-We welcome contributions to improve ALL IN A! Please follow these steps:
+1. **Fork** the repository and create a feature branch
+2. **Follow** TypeScript best practices and ESLint configuration
+3. **Write** comprehensive tests for new functionality
+4. **Document** changes and update relevant documentation
+5. **Submit** pull request with detailed description of changes
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### **Development Standards**
 
-### Development Guidelines
+- Maintain consistent code formatting with ESLint rules
+- Use meaningful commit messages following conventional commits
+- Ensure all tests pass before submitting pull requests
+- Update documentation for any API or feature changes
 
-- Follow TypeScript best practices
-- Use ESLint configuration for code style
-- Write meaningful commit messages
-- Test your changes thoroughly
-- Update documentation as needed
+---
 
-## 📄 License
+## **License**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for complete details.
 
-## 🆘 Support & Contact
+---
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/DevAgnihotri/ALL-IN-A/issues)
-- **Developer**: DevAgnihotri
-- **Project Repository**: https://github.com/DevAgnihotri/ALL-IN-A
+## **Support & Contact**
 
-## 🙏 Acknowledgments
+**Issue Reporting**: [GitHub Issues](https://github.com/DevAgnihotri/ALL-IN-A/issues)  
+**Developer**: DevAgnihotri  
+**Repository**: https://github.com/DevAgnihotri/ALL-IN-A
 
-- **Mental Health Professionals** who provided guidance on evidence-based practices
-- **Open Source Community** for the amazing tools and libraries
-- **Users and Testers** who help make this platform better
-- **shadcn/ui** for beautiful, accessible UI components
-- **Firebase** for reliable backend services
+---
+
+## **Acknowledgments**
+
+**Mental Health Professionals** - Clinical guidance on evidence-based practices  
+**Open Source Community** - Foundation tools and libraries  
+**User Community** - Feedback and testing support  
+**shadcn/ui** - Beautiful, accessible component architecture  
+**Firebase** - Reliable backend infrastructure and services
 
 ---
 
 <div align="center">
-  <strong>Built with ❤️ for mental health and wellness</strong>
-  <br>
-  <em>Empowering individuals on their journey to better mental health</em>
+  <strong>Built with care for maternal mental health</strong>  
+  <br>  
+  <em>Empowering mothers on their journey to wellness</em>
 </div>
