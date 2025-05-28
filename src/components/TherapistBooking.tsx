@@ -39,11 +39,10 @@ export const TherapistBooking = () => {
   const [selectedSessionType, setSelectedSessionType] = useState<string>("Video");
   const [userBookings, setUserBookings] = useState<BookingRecord[]>([]);
   const [isLoadingBookings, setIsLoadingBookings] = useState(false);
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // Force refresh function
   const forceRefreshBookings = () => {
-    setRefreshTrigger(prev => prev + 1);
+    loadUserBookings();
   };
 
   // Load user bookings
@@ -59,8 +58,7 @@ export const TherapistBooking = () => {
     } finally {
       setIsLoadingBookings(false);
     }
-    // refreshTrigger dependency is intentional - it forces refresh when bookings are updated
-  }, [user, refreshTrigger]);
+  }, [user]);
 
   useEffect(() => {
     loadUserBookings();
@@ -178,12 +176,6 @@ export const TherapistBooking = () => {
         </p>
         {user && (
           <div className="mt-4 flex items-center justify-center gap-4">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg">
-              <CalendarCheck className="w-5 h-5 text-blue-600 mr-2" />
-              <span className="text-blue-800 font-medium">
-                Your Bookings: {userBookings.length}/5
-              </span>
-            </div>
             <a 
               href="https://devtime-five.vercel.app/" 
               target="_blank" 
