@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,9 +22,8 @@ export const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [isLoading, setIsLoading] = useState(false);
   const [uploadingDocument, setUploadingDocument] = useState(false);
-  const [uploadingProfileImage, setUploadingProfileImage] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const profileImageInputRef = useRef<HTMLInputElement>(null);
   const storage = getStorage();
   
   // Documents State
@@ -82,11 +81,12 @@ export const Profile = () => {
   };
 
   // Load user documents from Firestore
-  const loadUserDocuments = async () => {
-    if (!user) return;
+  const loadUserDocuments = useCallback(async (userId?: string) => {
+    const uid = userId || user?.uid;
+    if (!uid) return;
     
     try {
-      const documentsRef = collection(db, "users", user.uid, "documents");
+      const documentsRef = collection(db, "users", uid, "documents");
       const snapshot = await getDocs(documentsRef);
       const loadedDocs = snapshot.docs.map(doc => {
         const data = doc.data();
@@ -103,24 +103,60 @@ export const Profile = () => {
     } catch (error) {
       console.error("Error loading documents:", error);
     }
-  };
+  }, [user]);
 
   // Load user data from Firestore
   useEffect(() => {
     const loadUserData = async () => {
       if (user?.uid) {
+        setDataLoaded(false); // Reset loading state
         try {
           // Load personal details
           const personalDoc = await getDoc(doc(db, "userProfiles", user.uid));
           if (personalDoc.exists()) {
             const personalData = personalDoc.data();
+            
+            // Helper function to validate and format date for HTML5 date input
+            const formatDateForInput = (dateValue: unknown): string => {
+              if (!dateValue || dateValue === "Not provided" || dateValue === "") {
+                return "";
+              }
+              
+              // If it's already a valid date string (yyyy-MM-dd format), return it
+              if (typeof dateValue === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateValue)) {
+                return dateValue;
+              }
+              
+              // If it's a Firebase Timestamp or Date object, convert it
+              if (dateValue && typeof dateValue === 'object' && 'toDate' in dateValue && typeof dateValue.toDate === 'function') {
+                const date = (dateValue as { toDate: () => Date }).toDate();
+                return date.toISOString().split('T')[0];
+              }
+              
+              // If it's a Date object
+              if (dateValue instanceof Date) {
+                return dateValue.toISOString().split('T')[0];
+              }
+              
+              // Try to parse as date string
+              if (typeof dateValue === 'string') {
+                const parsedDate = new Date(dateValue);
+                if (!isNaN(parsedDate.getTime())) {
+                  return parsedDate.toISOString().split('T')[0];
+                }
+              }
+              
+              // If all else fails, return empty string
+              return "";
+            };
+            
             setPersonalDetails(prev => ({
               ...prev,
               displayName: user?.displayName || personalData.displayName || "",
               email: user?.email || personalData.email || "",
               phone: user?.phoneNumber || personalData.phone || "",
               profileImageUrl: personalData.profileImageUrl || user?.photoURL || "",
-              dateOfBirth: personalData.dateOfBirth || "",
+              dateOfBirth: formatDateForInput(personalData.dateOfBirth),
               gender: personalData.gender || "",
               nationality: personalData.nationality || "",
               languages: personalData.languages || "",
@@ -143,8 +179,7 @@ export const Profile = () => {
             }));
           }
           
-          // Load user documents
-          await loadUserDocuments();
+          setDataLoaded(true);
         } catch (error) {
           console.error("Error loading user data:", error);
         }
@@ -152,7 +187,14 @@ export const Profile = () => {
     };
 
     loadUserData();
-  }, [user, loadUserDocuments]);
+  }, [user?.uid, user?.displayName, user?.email, user?.phoneNumber, user?.photoURL]);
+
+  // Load documents separately to avoid circular dependencies
+  useEffect(() => {
+    if (user?.uid && dataLoaded) {
+      loadUserDocuments(user.uid);
+    }
+  }, [user?.uid, dataLoaded, loadUserDocuments]);
 
   // Update completion percentages when data changes
   useEffect(() => {
@@ -241,7 +283,7 @@ export const Profile = () => {
       await addDoc(collection(db, "users", user.uid, "documents"), docData);
       
       // Refresh documents list
-      await loadUserDocuments();
+      await loadUserDocuments(user.uid);
       
       alert("Document uploaded successfully!");
     } catch (error) {
@@ -252,109 +294,6 @@ export const Profile = () => {
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
-    }
-  };
-
-  // Upload profile image
-  const handleProfileImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file || !user) return;
-
-    // Check file size (max 5MB for profile images)
-    if (file.size > 5 * 1024 * 1024) {
-      alert("Profile image size must be less than 5MB");
-      return;
-    }
-
-    // Check if it's an image file
-    if (!file.type.startsWith('image/')) {
-      alert("Please upload only image files (JPG, PNG, GIF, etc.)");
-      return;
-    }
-
-    setUploadingProfileImage(true);
-    try {
-      // Delete old profile image if it exists
-      if (personalDetails.profileImageUrl && personalDetails.profileImageUrl !== user?.photoURL) {
-        try {
-          const oldImageRef = ref(storage, personalDetails.profileImageUrl);
-          await deleteObject(oldImageRef);
-        } catch (error) {
-          console.log("Could not delete old profile image:", error);
-        }
-      }
-
-      // Upload new profile image to Firebase Storage
-      const imageRef = ref(storage, `users/${user.uid}/profile/profile_${Date.now()}_${file.name}`);
-      const snapshot = await uploadBytes(imageRef, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
-
-      // Update personal details with new image URL
-      const updatedDetails = {
-        ...personalDetails,
-        profileImageUrl: downloadURL
-      };
-
-      // Save to Firestore
-      await setDoc(doc(db, "userProfiles", user.uid), {
-        ...updatedDetails,
-        lastUpdated: new Date(),
-        uid: user.uid
-      }, { merge: true });
-
-      // Update local state
-      setPersonalDetails(updatedDetails);
-      
-      alert("Profile image updated successfully!");
-    } catch (error) {
-      console.error("Error uploading profile image:", error);
-      alert("Failed to upload profile image. Please try again.");
-    } finally {
-      setUploadingProfileImage(false);
-      if (profileImageInputRef.current) {
-        profileImageInputRef.current.value = '';
-      }
-    }
-  };
-
-  // Remove profile image
-  const handleRemoveProfileImage = async () => {
-    if (!user || !confirm("Are you sure you want to remove your profile image?")) return;
-
-    setUploadingProfileImage(true);
-    try {
-      // Delete image from storage if it's not the Google auth photo
-      if (personalDetails.profileImageUrl && personalDetails.profileImageUrl !== user?.photoURL) {
-        try {
-          const imageRef = ref(storage, personalDetails.profileImageUrl);
-          await deleteObject(imageRef);
-        } catch (error) {
-          console.log("Could not delete profile image from storage:", error);
-        }
-      }
-
-      // Update personal details to remove image URL
-      const updatedDetails = {
-        ...personalDetails,
-        profileImageUrl: ""
-      };
-
-      // Save to Firestore
-      await setDoc(doc(db, "userProfiles", user.uid), {
-        ...updatedDetails,
-        lastUpdated: new Date(),
-        uid: user.uid
-      }, { merge: true });
-
-      // Update local state
-      setPersonalDetails(updatedDetails);
-      
-      alert("Profile image removed successfully!");
-    } catch (error) {
-      console.error("Error removing profile image:", error);
-      alert("Failed to remove profile image. Please try again.");
-    } finally {
-      setUploadingProfileImage(false);
     }
   };
 
@@ -371,7 +310,7 @@ export const Profile = () => {
       await deleteObject(fileRef);
       
       // Refresh documents list
-      await loadUserDocuments();
+      await loadUserDocuments(user.uid);
       
       alert("Document deleted successfully!");
     } catch (error) {
@@ -414,32 +353,18 @@ export const Profile = () => {
           <h1 className="text-3xl font-bold text-gray-900">ALL IN A Profile</h1>
         </div>
         <div className="flex items-center space-x-4">
-          <div className="relative group">
-            <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
-              {personalDetails.profileImageUrl ? (
-                <img 
-                  src={personalDetails.profileImageUrl} 
-                  alt={user.displayName || "User"} 
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-green-500 flex items-center justify-center text-white font-semibold">
-                  {(user?.displayName || user?.email || "U").charAt(0).toUpperCase()}
-                </div>
-              )}
-            </div>
-            {/* Image upload overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center cursor-pointer"
-                 onClick={() => profileImageInputRef.current?.click()}>
-              <Upload className="w-4 h-4 text-white" />
-            </div>
-            <input
-              ref={profileImageInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleProfileImageUpload}
-              style={{ display: 'none' }}
-            />
+          <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+            {personalDetails.profileImageUrl ? (
+              <img 
+                src={personalDetails.profileImageUrl} 
+                alt={user.displayName || "User"} 
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-green-500 flex items-center justify-center text-white font-semibold">
+                {(user?.displayName || user?.email || "U").charAt(0).toUpperCase()}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -536,45 +461,18 @@ export const Profile = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                <div className="relative group">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    {personalDetails.profileImageUrl ? (
-                      <img 
-                        src={personalDetails.profileImageUrl} 
-                        alt={user.displayName || "User"} 
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-semibold">
-                        {(personalDetails.displayName || user?.email || "U").charAt(0).toUpperCase()}
-                      </div>
-                    )}
-                  </div>
-                  {/* Image management overlay */}
-                  <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                    <div className="flex space-x-1">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => profileImageInputRef.current?.click()}
-                        className="p-1 h-6 w-6 text-white hover:bg-white/20"
-                        disabled={uploadingProfileImage}
-                      >
-                        <Upload className="w-3 h-3" />
-                      </Button>
-                      {personalDetails.profileImageUrl && (
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={handleRemoveProfileImage}
-                          className="p-1 h-6 w-6 text-white hover:bg-white/20"
-                          disabled={uploadingProfileImage}
-                        >
-                          <X className="w-3 h-3" />
-                        </Button>
-                      )}
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                  {personalDetails.profileImageUrl ? (
+                    <img 
+                      src={personalDetails.profileImageUrl} 
+                      alt={user.displayName || "User"} 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-semibold">
+                      {(personalDetails.displayName || user?.email || "U").charAt(0).toUpperCase()}
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold">{personalDetails.displayName || "Complete your profile"}</h3>
@@ -707,67 +605,6 @@ export const Profile = () => {
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Profile Image Section */}
-            <div className="flex items-center justify-center mb-6">
-              <div className="text-center">
-                <div className="relative mx-auto w-32 h-32 mb-4">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-200">
-                    {personalDetails.profileImageUrl ? (
-                      <img 
-                        src={personalDetails.profileImageUrl} 
-                        alt="Profile" 
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-green-500 flex items-center justify-center text-white text-4xl font-semibold">
-                        {(personalDetails.displayName || user?.email || "U").charAt(0).toUpperCase()}
-                      </div>
-                    )}
-                  </div>
-                  {uploadingProfileImage && (
-                    <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center">
-                      <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    </div>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Button
-                    onClick={() => profileImageInputRef.current?.click()}
-                    disabled={uploadingProfileImage}
-                    className="bg-green-600 hover:bg-green-700"
-                    size="sm"
-                  >
-                    {uploadingProfileImage ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                        Uploading...
-                      </>
-                    ) : (
-                      <>
-                        <Upload className="w-4 h-4 mr-2" />
-                        {personalDetails.profileImageUrl ? 'Change Photo' : 'Upload Photo'}
-                      </>
-                    )}
-                  </Button>
-                  {personalDetails.profileImageUrl && (
-                    <Button
-                      onClick={handleRemoveProfileImage}
-                      disabled={uploadingProfileImage}
-                      variant="outline"
-                      size="sm"
-                      className="ml-2 text-red-600 border-red-300 hover:bg-red-50"
-                    >
-                      <X className="w-4 h-4 mr-2" />
-                      Remove Photo
-                    </Button>
-                  )}
-                </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  Recommended: Square image, max 5MB (JPG, PNG, GIF)
-                </p>
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Left Column */}
               <div className="space-y-4">

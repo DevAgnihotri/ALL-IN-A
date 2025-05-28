@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyBUnmIiEIEGBapfymqOi1llnfHfou4JPIY",
   authDomain: "allina-f0012.firebaseapp.com",
   projectId: "allina-f0012",
-  storageBucket: "allina-f0012.firebasestorage.app",
+  storageBucket: "allina-f0012.appspot.com", // FIXED: correct Firebase Storage bucket
   messagingSenderId: "592394375846",
   appId: "1:592394375846:web:4e57400a815ddf8d07da67",
   measurementId: "G-FGH7HKX60C"
