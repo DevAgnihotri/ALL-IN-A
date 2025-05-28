@@ -127,7 +127,7 @@ const testimonials = [
 		avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
 		rating: 5,
 		title: "New Mother, PPD Survivor",
-		location: "California"
+		location: "Latvia"
 	},
 	{
 		name: "Dr. Emily Chen",
@@ -135,7 +135,7 @@ const testimonials = [
 		avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
 		rating: 5,
 		title: "Perinatal Psychologist",
-		location: "New York"
+		location: "Latvia"
 	},
 	{
 		name: "Maria Rodriguez",
@@ -143,7 +143,7 @@ const testimonials = [
 		avatar: "https://images.unsplash.com/photo-1548142813-c348350df52b?w=150&h=150&fit=crop&crop=face",
 		rating: 5,
 		title: "Expecting Mother",
-		location: "Texas"
+		location: "Latvia"
 	},
 ];
 
