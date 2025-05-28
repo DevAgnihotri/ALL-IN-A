@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AlertTriangle, User, Heart, Edit, FileText, Download, Save, X, Plus, Check, AlertCircle, Upload, Trash2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -43,15 +42,12 @@ export const Profile = () => {
     phone: user?.phoneNumber || "",
     profileImageUrl: user?.photoURL || "",
     dateOfBirth: "",
-    gender: "",
     nationality: "",
     languages: "",
     homeAddress: "",
     emergencyContact: "",
     emergencyPhone: "",
-    occupation: "",
-    education: "",
-    maritalStatus: ""
+    occupation: ""
   });
 
   // Health Metrics State - Physiological metrics only
@@ -157,15 +153,12 @@ export const Profile = () => {
               phone: user?.phoneNumber || personalData.phone || "",
               profileImageUrl: personalData.profileImageUrl || user?.photoURL || "",
               dateOfBirth: formatDateForInput(personalData.dateOfBirth),
-              gender: personalData.gender || "",
               nationality: personalData.nationality || "",
               languages: personalData.languages || "",
               homeAddress: personalData.homeAddress || "",
               emergencyContact: personalData.emergencyContact || "",
               emergencyPhone: personalData.emergencyPhone || "",
-              occupation: personalData.occupation || "",
-              education: personalData.education || "",
-              maritalStatus: personalData.maritalStatus || ""
+              occupation: personalData.occupation || ""
             }));
           }
 
@@ -662,23 +655,6 @@ export const Profile = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="gender" className="text-sm font-medium text-gray-700">
-                    Gender
-                  </Label>
-                  <Select value={personalDetails.gender} onValueChange={(value) => setPersonalDetails({...personalDetails, gender: value})}>
-                    <SelectTrigger className="mt-1">
-                      <SelectValue placeholder="Select your gender" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="male">Male</SelectItem>
-                      <SelectItem value="female">Female</SelectItem>
-                      <SelectItem value="non-binary">Non-binary</SelectItem>
-                      <SelectItem value="prefer-not-to-say">Prefer not to say</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
                   <Label htmlFor="nationality" className="text-sm font-medium text-gray-700">
                     Nationality
                   </Label>
@@ -733,45 +709,10 @@ export const Profile = () => {
                     className="mt-1"
                   />
                 </div>
+              </div>
 
-                <div>
-                  <Label htmlFor="education" className="text-sm font-medium text-gray-700">
-                    Education Level
-                  </Label>
-                  <Select value={personalDetails.education} onValueChange={(value) => setPersonalDetails({...personalDetails, education: value})}>
-                    <SelectTrigger className="mt-1">
-                      <SelectValue placeholder="Select your education level" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="high-school">High School</SelectItem>
-                      <SelectItem value="some-college">Some College</SelectItem>
-                      <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
-                      <SelectItem value="masters">Master's Degree</SelectItem>
-                      <SelectItem value="doctorate">Doctorate</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="maritalStatus" className="text-sm font-medium text-gray-700">
-                    Marital Status
-                  </Label>
-                  <Select value={personalDetails.maritalStatus} onValueChange={(value) => setPersonalDetails({...personalDetails, maritalStatus: value})}>
-                    <SelectTrigger className="mt-1">
-                      <SelectValue placeholder="Select your marital status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="single">Single</SelectItem>
-                      <SelectItem value="married">Married</SelectItem>
-                      <SelectItem value="divorced">Divorced</SelectItem>
-                      <SelectItem value="widowed">Widowed</SelectItem>
-                      <SelectItem value="separated">Separated</SelectItem>
-                      <SelectItem value="in-relationship">In a Relationship</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
+              {/* Right Column */}
+              <div className="space-y-4">
                 <div>
                   <Label htmlFor="emergencyContact" className="text-sm font-medium text-gray-700">
                     Emergency Contact Name
