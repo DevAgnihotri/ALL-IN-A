@@ -261,14 +261,14 @@ export const TherapistCalendar = ({
                     })}
                   </div>
                 </div>
-                
-                {selectedTime && (
+                  {selectedTime && (
                   <div className="mt-6 p-4 bg-green-50 rounded-lg">
                     <h4 className="font-semibold mb-2">Booking Summary</h4>                    <div className="space-y-1 text-sm">
                       <p><strong>Therapist:</strong> {therapist.name}</p>
                       <p><strong>Date:</strong> {selectedDate.toLocaleDateString()}</p>
                       <p><strong>Time:</strong> {formatTimeForDisplay(selectedTime)}</p>
                       <p><strong>Session Type:</strong> {selectedSessionType}</p>
+                      <p><strong>Your Bookings:</strong> {userBookingCount}/5</p>
                     </div>
                     
                     <Button 
