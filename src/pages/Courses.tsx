@@ -217,7 +217,7 @@ export const Courses = () => {
             <div className="text-3xl font-bold text-green-600 mb-2">
               {coursesData.reduce((total, course) => total + course.enrolledCount, 0).toLocaleString()}+
             </div>
-            <div className="text-gray-600">Students Enrolled</div>
+            <div className="text-gray-600">Members Enrolled</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-green-600 mb-2">{coursesData.length}</div>
