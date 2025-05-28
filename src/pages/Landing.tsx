@@ -423,11 +423,9 @@ const Landing = () => {
 							<p className="text-sm text-gray-600 leading-tight">{stat.text}</p>
 						</motion.div>
 					))}
-				</motion.div>
-
-				{/* Main CTA */}
+				</motion.div>				{/* Main CTA */}
 				<motion.div
-					className="flex flex-col sm:flex-row gap-4 mb-20"
+					className="flex flex-col sm:flex-row gap-4 mb-12 md:mb-20"
 					variants={itemVariants}
 				>
 					<motion.div
@@ -464,23 +462,22 @@ const Landing = () => {
 				</motion.div>
 			</motion.section>			{/* Solutions Section */}
 			<motion.section 
-				className="relative z-10 py-20 px-4"
+				className="relative z-10 py-12 md:py-20 px-4 bg-gradient-to-br from-gray-50/50 to-white/50 min-h-[400px] block"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
-				viewport={{ once: true, amount: 0.3 }}
-			>
-				<div className="max-w-7xl mx-auto">
-					<motion.div className="text-center mb-16" variants={itemVariants}>
-						<h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
+				viewport={{ once: true, amount: 0.1, margin: "-100px" }}
+			>				<div className="max-w-7xl mx-auto relative min-h-[300px]">
+					<motion.div className="text-center mb-12 md:mb-16 px-4" variants={itemVariants}>
+						<h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent leading-tight">
 							Revolutionary Maternal Care
 						</h2>
-						<p className="text-xl text-gray-600 max-w-3xl mx-auto">
+						<p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
 							Comprehensive solutions designed specifically for maternal mental health challenges
 						</p>
 					</motion.div>
 
-					<div className="grid md:grid-cols-2 gap-12">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
 						{solutions.map((solution, index) => (
 							<motion.div
 								key={solution.title}
@@ -489,19 +486,18 @@ const Landing = () => {
 								whileHover={{ y: -8 }}
 								transition={{ delay: index * 0.2 }}
 							>
-								<div className={`absolute inset-0 bg-gradient-to-r ${solution.gradient} rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity duration-300`} />
-								<div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+								<div className={`absolute inset-0 bg-gradient-to-r ${solution.gradient} rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity duration-300`} />								<div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-xl border border-white/20">
 									<motion.div 
-										className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${solution.gradient} flex items-center justify-center`}
+										className={`w-16 md:w-20 h-16 md:h-20 mx-auto mb-4 md:mb-6 rounded-2xl bg-gradient-to-r ${solution.gradient} flex items-center justify-center`}
 										animate={{ rotate: [0, 5, -5, 0] }}
 										transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
 									>
-										<solution.icon className="w-10 h-10 text-white" />
+										<solution.icon className="w-8 md:w-10 h-8 md:h-10 text-white" />
 									</motion.div>
-									<h3 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+									<h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-gray-800 text-center">
 										{solution.title}
 									</h3>
-									<p className="text-gray-600 mb-6 leading-relaxed text-center">
+									<p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed text-center">
 										{solution.desc}
 									</p>
 									<div className="space-y-3">
@@ -523,15 +519,13 @@ const Landing = () => {
 						))}
 					</div>
 				</div>
-			</motion.section>
-
-			{/* How It Works Section */}
+			</motion.section>			{/* How It Works Section */}
 			<motion.section 
-				className="relative z-10 py-20 px-4 bg-gradient-to-r from-rose-50 to-purple-50"
+				className="relative z-10 py-12 md:py-20 px-4 bg-gradient-to-r from-rose-50 to-purple-50"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
-				viewport={{ once: true, amount: 0.3 }}
+				viewport={{ once: true, amount: 0.1 }}
 			>
 				<div className="max-w-6xl mx-auto">
 					<motion.div className="text-center mb-16" variants={itemVariants}>

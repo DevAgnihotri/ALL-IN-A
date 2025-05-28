@@ -1,4 +1,4 @@
-# All in Awareness - Maternal Mental Health Platform
+# 🌸 All in Awareness - Maternal Mental Health Platform
 
 <div align="center">
   <img src="public/logo.png" alt="All in Awareness Logo" width="120" height="120" />
@@ -14,90 +14,90 @@
 
 ---
 
-## **Core Features**
+## ✨ **Core Features**
 
-### **Specialized Maternal Mental Health Care**
+### 👩‍👶 **Specialized Maternal Mental Health Care**
 
-**Postpartum Depression Focus**  
+**🌟 Postpartum Depression Focus**  
 Targeted support for the 1 in 7 mothers experiencing PPD with evidence-based interventions.
 
-**Pregnancy Anxiety Support**  
+**😰 Pregnancy Anxiety Support**  
 Comprehensive tools and resources for managing prenatal stress and anxiety throughout pregnancy.
 
-**Perinatal Mood Disorders**  
+**💙 Perinatal Mood Disorders**  
 Full spectrum care addressing the complete range of maternal mental health challenges.
 
-**Birth Trauma Recovery**  
+**💔 Birth Trauma Recovery**  
 Specialized approaches for processing and healing from traumatic birth experiences.
 
-### **Advanced Wellness Tracking**
+### 📊 **Advanced Wellness Tracking**
 
-**EPDS Assessment**  
+**📋 EPDS Assessment**  
 Edinburgh Postnatal Depression Scale integration with personalized care recommendations.
 
-**Comprehensive Metrics**  
+**📈 Comprehensive Metrics**  
 Track mood patterns, sleep quality, and other critical maternal health indicators.
 
-**Progress Visualization**  
+**📉 Progress Visualization**  
 Clear analytics and trend monitoring to track your healing journey over time.
 
-**Personalization Engine**  
+**🎯 Personalization Engine**  
 Custom care plans developed based on your specific maternal mental health needs.
 
-### **Expert Network Access**
+### 👩‍⚕️ **Expert Network Access**
 
-**Certified Perinatal Specialists**  
+**🏆 Certified Perinatal Specialists**  
 Connect with therapists specifically trained in maternal mental health best practices.
 
-**Seamless Booking System**  
+**📅 Seamless Booking System**  
 Integrated appointment scheduling with qualified maternal mental health professionals.
 
-**Calendar Integration**  
+**🗓️ Calendar Integration**  
 Google Calendar synchronization for streamlined appointment management.
 
-**Flexible Support Options**  
+**💻 Flexible Support Options**  
 Access to virtual consultations, in-person sessions, and emergency care services.
 
-### **Community Support System**
+### 👥 **Community Support System**
 
-**Peer Support Networks**  
+**🤝 Peer Support Networks**  
 Connect with other mothers navigating similar mental health challenges.
 
-**Moderated Group Sessions**  
+**👨‍👩‍👧‍👦 Moderated Group Sessions**  
 Professionally guided maternal support groups with structured therapeutic approaches.
 
-**Resource Sharing**  
+**📚 Resource Sharing**  
 Community-curated resources covering pregnancy, postpartum, and beyond.
 
-**Inclusive Accessibility**  
+**♿ Inclusive Accessibility**  
 Supportive environments designed for mothers at every stage of their journey.
 
-### **Evidence-Based Education**
+### 🎓 **Evidence-Based Education**
 
-**Maternal Wellness Curriculum**  
+**📖 Maternal Wellness Curriculum**  
 Specialized educational content developed for pregnancy and postpartum mental health.
 
-**Interactive Learning Modules**  
+**🎮 Interactive Learning Modules**  
 Engaging multimedia resources with evidence-based therapeutic techniques.
 
-**Expert-Developed Content**  
+**👨‍🔬 Expert-Developed Content**  
 Materials created by board-certified perinatal mental health specialists.
 
-**Adaptive Learning Paths**  
+**🔄 Adaptive Learning Paths**  
 Personalized educational journeys tailored to your specific needs and progress.
 
-### **Enterprise-Grade Security**
+### 🔒 **Enterprise-Grade Security**
 
-**Firebase Authentication**  
+**🔐 Firebase Authentication**  
 Industry-standard user authentication with multi-factor security options.
 
-**HIPAA-Compliant Design**  
+**🏥 HIPAA-Compliant Design**  
 Privacy-focused architecture specifically designed for sensitive health information.
 
-**End-to-End Encryption**  
+**🔏 End-to-End Encryption**  
 Advanced data protection ensuring complete confidentiality of personal information.
 
-**Secure Document Management**  
+**📁 Secure Document Management**  
 Protected upload and storage systems for personal health documents and records.
 
 ---
@@ -278,16 +278,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Issue Reporting**: [GitHub Issues](https://github.com/DevAgnihotri/ALL-IN-A/issues)  
 **Developer**: DevAgnihotri  
 **Repository**: https://github.com/DevAgnihotri/ALL-IN-A
-
----
-
-## **Acknowledgments**
-
-**Mental Health Professionals** - Clinical guidance on evidence-based practices  
-**Open Source Community** - Foundation tools and libraries  
-**User Community** - Feedback and testing support  
-**shadcn/ui** - Beautiful, accessible component architecture  
-**Firebase** - Reliable backend infrastructure and services
 
 ---
 
