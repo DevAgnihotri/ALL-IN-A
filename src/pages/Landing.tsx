@@ -67,14 +67,13 @@ const solutions = [
 		desc: "Evidence-based treatment for postpartum depression, pregnancy anxiety, and perinatal mood disorders by certified specialists.",
 		icon: Baby,
 		gradient: "from-rose-400 to-pink-500",
-		features: ["Postpartum Depression Treatment", "Pregnancy Anxiety Support", "Perinatal Mood Disorders", "Birth Trauma Recovery"]
-	},
+		features: ["Postpartum Depression Treatment", "Pregnancy Anxiety Support", "Perinatal Mood Disorders", "Birth Trauma Recovery"]	},
 	{
-		title: "24/7 Support",
+		title: "Support",
 		desc: "Immediate help when you need it most. Specialized maternal mental health crisis intervention available around the clock.",
 		icon: Shield,
 		gradient: "from-purple-400 to-violet-500",
-		features: ["Instant Crisis Response", "Maternal Emergency Support", "24/7 Helpline", "Immediate Intervention"]
+		features: ["Instant Crisis Response", "Maternal Emergency Support", "Helpline", "Immediate Intervention"]
 	},
 	{
 		title: "AI-Powered Personalization",
@@ -93,11 +92,10 @@ const solutions = [
 ];
 
 // Powerful Impact Metrics
-const impactMetrics = [
-	{ icon: Users, label: "Mothers Helped", value: "85+", color: "text-rose-600", bgColor: "bg-rose-50" },
+const impactMetrics = [	{ icon: Users, label: "Mothers Helped", value: "85+", color: "text-rose-600", bgColor: "bg-rose-50" },
 	{ icon: Heart, label: "Recovery Success", value: "94%", color: "text-purple-600", bgColor: "bg-purple-50" },
 	{ icon: Award, label: "Specialist Therapists", value: "47", color: "text-blue-600", bgColor: "bg-blue-50" },
-	{ icon: Clock, label: "Crisis Response", value: "24/7", color: "text-green-600", bgColor: "bg-green-50" },
+	{ icon: Clock, label: "Crisis Response", value: "Available", color: "text-green-600", bgColor: "bg-green-50" },
 	{ icon: Shield, label: "Privacy Protected", value: "100%", color: "text-indigo-600", bgColor: "bg-indigo-50" },
 	{ icon: Sparkles, label: "Treatment Plans", value: "Custom", color: "text-amber-600", bgColor: "bg-amber-50" },
 ];
@@ -138,8 +136,8 @@ const testimonials = [
 		location: "Latvia"
 	},
 	{
-		name: "Maria Rodriguez",
-		text: "The community support and specialized therapy helped me through severe pregnancy anxiety. The 24/7 support gave me peace of mind knowing help was always available. I felt understood and supported every step of the way.",
+	name: "Maria Rodriguez",
+		text: "The community support and specialized therapy helped me through severe pregnancy anxiety. The support gave me peace of mind knowing help was always available. I felt understood and supported every step of the way.",
 		avatar: "https://images.unsplash.com/photo-1548142813-c348350df52b?w=150&h=150&fit=crop&crop=face",
 		rating: 5,
 		title: "Expecting Mother",
@@ -389,10 +387,9 @@ const Landing = () => {
 				
 				<motion.p 
 					className="text-lg md:text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed"
-					variants={itemVariants}
-				>
+					variants={itemVariants}				>
 					Specialized care for postpartum depression, pregnancy anxiety, and perinatal mood disorders. 
-					Evidence-based treatment with certified maternal mental health specialists available 24/7.
+					Evidence-based treatment with certified maternal mental health specialists.
 				</motion.p>
 
 				{/* Crisis Statistics */}
@@ -814,10 +811,9 @@ const Landing = () => {
 						variants={containerVariants}
 						initial="hidden"
 						animate="visible"
-					>
-						{[
+					>						{[
 							"Specialized Maternal Care",
-							"24/7 Support", 
+							"Support", 
 							"Licensed Perinatal Therapists",
 							"Evidence-Based Treatment",
 							"HIPAA Compliant",
@@ -939,9 +935,8 @@ const Landing = () => {
 					<div className="border-t border-gray-200 pt-8">
 						<p className="text-sm text-gray-500 mb-2">
 							© {new Date().getFullYear()} All in Awareness. All rights reserved.
-						</p>
-						<p className="text-xs text-gray-400">
-							Licensed maternal mental health professionals • HIPAA compliant • Evidence-based treatment • Support available 24/7
+						</p>						<p className="text-xs text-gray-400">
+							Licensed maternal mental health professionals • HIPAA compliant • Evidence-based treatment • Support available
 						</p>
 						<p className="text-xs text-gray-400 mt-2">
 							<strong>Disclaimer:</strong> All in Awareness provides mental health support and is not a substitute for emergency medical care. 
