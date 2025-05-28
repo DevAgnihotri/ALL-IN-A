@@ -64,8 +64,8 @@ export const Navigation = ({ currentSection, onSectionChange }: NavigationProps)
               </button>
             ))}
             
-            {/* User Info or Auth Buttons */}
-            {user ? (
+            {/* User Info */}
+            {user && (
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => onSectionChange("profile")}
@@ -100,25 +100,6 @@ export const Navigation = ({ currentSection, onSectionChange }: NavigationProps)
                   title="Logout"
                 >
                   <LogOut className="w-4 h-4" />
-                </Button>
-              </div>
-            ) : (
-              /* Auth Buttons for non-authenticated users */
-              <div className="flex items-center space-x-3">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => navigate("/auth")}
-                  className="text-gray-600 hover:text-green-600 hover:bg-green-50 whitespace-nowrap"
-                >
-                  Sign In
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={() => navigate("/auth")}
-                  className="bg-green-600 hover:bg-green-700 text-white whitespace-nowrap"
-                >
-                  Get Started
                 </Button>
               </div>
             )}
@@ -157,8 +138,8 @@ export const Navigation = ({ currentSection, onSectionChange }: NavigationProps)
               </button>
             ))}
             
-            {/* Mobile User Info and Auth */}
-            {user ? (
+            {/* Mobile User Info and Logout */}
+            {user && (
               <div className="mt-4 pt-4 border-t border-green-100">
                 <button
                   onClick={() => {
@@ -203,29 +184,6 @@ export const Navigation = ({ currentSection, onSectionChange }: NavigationProps)
                   <LogOut className="w-4 h-4" />
                   <span>Logout</span>
                 </button>
-              </div>
-            ) : (
-              /* Mobile Auth Buttons */
-              <div className="mt-4 pt-4 border-t border-green-100 space-y-2">
-                <Button
-                  variant="ghost"
-                  onClick={() => {
-                    navigate("/auth");
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full justify-center text-gray-600 hover:text-green-600 hover:bg-green-50"
-                >
-                  Sign In
-                </Button>
-                <Button
-                  onClick={() => {
-                    navigate("/auth");
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full justify-center bg-green-600 hover:bg-green-700 text-white"
-                >
-                  Get Started
-                </Button>
               </div>
             )}
           </div>

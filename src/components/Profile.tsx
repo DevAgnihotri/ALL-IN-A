@@ -21,7 +21,6 @@ export const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [isLoading, setIsLoading] = useState(false);
   const [uploadingDocument, setUploadingDocument] = useState(false);
-  const [dataLoaded, setDataLoaded] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const storage = getStorage();
   
@@ -77,12 +76,11 @@ export const Profile = () => {
   };
 
   // Load user documents from Firestore
-  const loadUserDocuments = useCallback(async (userId?: string) => {
-    const uid = userId || user?.uid;
-    if (!uid) return;
+  const loadUserDocuments = useCallback(async () => {
+    if (!user) return;
     
     try {
-      const documentsRef = collection(db, "users", uid, "documents");
+      const documentsRef = collection(db, "users", user.uid, "documents");
       const snapshot = await getDocs(documentsRef);
       const loadedDocs = snapshot.docs.map(doc => {
         const data = doc.data();
@@ -105,7 +103,6 @@ export const Profile = () => {
   useEffect(() => {
     const loadUserData = async () => {
       if (user?.uid) {
-        setDataLoaded(false); // Reset loading state
         try {
           // Load personal details
           const personalDoc = await getDoc(doc(db, "userProfiles", user.uid));
@@ -172,7 +169,8 @@ export const Profile = () => {
             }));
           }
           
-          setDataLoaded(true);
+          // Load user documents
+          await loadUserDocuments();
         } catch (error) {
           console.error("Error loading user data:", error);
         }
@@ -180,14 +178,7 @@ export const Profile = () => {
     };
 
     loadUserData();
-  }, [user?.uid, user?.displayName, user?.email, user?.phoneNumber, user?.photoURL]);
-
-  // Load documents separately to avoid circular dependencies
-  useEffect(() => {
-    if (user?.uid && dataLoaded) {
-      loadUserDocuments(user.uid);
-    }
-  }, [user?.uid, dataLoaded, loadUserDocuments]);
+  }, [user?.uid, loadUserDocuments]);
 
   // Update completion percentages when data changes
   useEffect(() => {
@@ -276,7 +267,7 @@ export const Profile = () => {
       await addDoc(collection(db, "users", user.uid, "documents"), docData);
       
       // Refresh documents list
-      await loadUserDocuments(user.uid);
+      await loadUserDocuments();
       
       alert("Document uploaded successfully!");
     } catch (error) {
@@ -303,7 +294,7 @@ export const Profile = () => {
       await deleteObject(fileRef);
       
       // Refresh documents list
-      await loadUserDocuments(user.uid);
+      await loadUserDocuments();
       
       alert("Document deleted successfully!");
     } catch (error) {
@@ -709,10 +700,7 @@ export const Profile = () => {
                     className="mt-1"
                   />
                 </div>
-              </div>
 
-              {/* Right Column */}
-              <div className="space-y-4">
                 <div>
                   <Label htmlFor="emergencyContact" className="text-sm font-medium text-gray-700">
                     Emergency Contact Name
