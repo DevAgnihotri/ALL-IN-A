@@ -178,7 +178,7 @@ export const Profile = () => {
     };
 
     loadUserData();
-  }, [user?.uid, loadUserDocuments]);
+  }, [user?.uid, user?.displayName, user?.email, user?.phoneNumber, user?.photoURL, loadUserDocuments]);
 
   // Update completion percentages when data changes
   useEffect(() => {
