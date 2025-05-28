@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Activity, Moon, Zap, RefreshCw, Brain, Smile, Users, Sun, Shield, AlertTriangle, Target, Battery } from "lucide-react";
+import { Activity, Moon, Zap, Brain, Smile, Users, Sun, Shield, AlertTriangle, Target, Battery } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePersonalization } from "@/contexts/PersonalizationContext";
@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 export const WellnessMetrics = () => {
   const { user } = useAuth();
   const { insights: personalizationInsights, isQuizCompleted } = usePersonalization();
-
   const [healthData, setHealthData] = useState({
     // Psychological and mental wellness metrics
     positivity: { value: 7.2, unit: "/10", status: "good", icon: Sun, category: "mood" },
@@ -31,7 +30,6 @@ export const WellnessMetrics = () => {
     energyLevel: { value: 6.9, unit: "/10", status: "good", icon: Activity, category: "energy" },
     focusLevel: { value: 6.5, unit: "/10", status: "focused", icon: Target, category: "cognitive" }
   });
-  const [isLoading, setIsLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   // Filter metrics based on personalization insights
@@ -209,11 +207,8 @@ export const WellnessMetrics = () => {
       } catch (error) {
         console.error("Error initializing wellness data:", error);
       }
-    };
-
-    const loadWellnessData = async () => {
+    };    const loadWellnessData = async () => {
       if (user?.uid) {
-        setIsLoading(true);
         try {
           const wellnessDoc = await getDoc(doc(db, "wellnessMetrics", user.uid));
           if (wellnessDoc.exists()) {
@@ -226,8 +221,6 @@ export const WellnessMetrics = () => {
           }
         } catch (error) {
           console.error("Error loading wellness data:", error);
-        } finally {
-          setIsLoading(false);
         }
       }
     };
@@ -338,28 +331,6 @@ export const WellnessMetrics = () => {
     };
   };
 
-  const refreshWellnessData = async () => {
-    if (!user?.uid) return;
-    
-    setIsLoading(true);
-    try {
-      // Generate new realistic data (simulating updated wellness readings)
-      const newData = generatePersonalizedWellnessData();
-      
-      await setDoc(doc(db, "wellnessMetrics", user.uid), {
-        metrics: newData,
-        lastUpdated: new Date(),
-        userId: user.uid
-      }, { merge: true });
-      
-      setHealthData(newData);
-      setLastUpdated(new Date());
-    } catch (error) {
-      console.error("Error updating wellness data:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -400,9 +371,8 @@ export const WellnessMetrics = () => {
   const { insights: wellnessInsights, recommendations } = generateRecommendation();
 
   return (
-    <div className="space-y-6">
-      {/* Header with personalization info */}
-      <div className="flex items-center justify-between">
+    <div className="space-y-6">      {/* Header with personalization info */}
+      <div className="space-y-2">
         <div className="flex items-center">
           <img 
             src="/logo.png" 
@@ -412,26 +382,36 @@ export const WellnessMetrics = () => {
           <h2 className="text-xl font-bold text-gray-900">
             {isQuizCompleted ? 'Your ALL&nbsp;IN&nbsp;A Personalized Metrics' : 'ALL IN A Wellness Metrics'}
           </h2>
-          {isQuizCompleted && personalizationInsights && (
-            <p className="text-sm text-gray-600 mt-1">
-              Based on your responses: {personalizationInsights.primaryConcern}
-            </p>
-          )}
-          {lastUpdated && (
-            <p className="text-xs text-gray-500 mt-1">
-              Last updated: {lastUpdated.toLocaleString()}
-            </p>
-          )}
         </div>
-        <Button
-          onClick={refreshWellnessData}
-          disabled={isLoading}
-          variant="outline"
-          className="flex items-center space-x-2"
-        >
-          <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
-          <span>{isLoading ? 'Updating...' : 'Refresh'}</span>
-        </Button>
+        
+        {isQuizCompleted && personalizationInsights && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 space-y-2">
+            <p className="text-sm font-medium text-blue-800">
+              Personalization Quiz Results:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <p className="text-blue-700">
+                <strong>Primary Focus:</strong> {personalizationInsights.primaryConcern}
+              </p>
+              <p className="text-blue-700">
+                <strong>Current Mood:</strong> {personalizationInsights.mood}
+              </p>
+              <p className="text-blue-700">
+                <strong>Recommended Therapy:</strong> {personalizationInsights.recommendations.therapyType}
+              </p>
+              <p className="text-blue-700">
+                <strong>Preferred Time:</strong> {personalizationInsights.preferredTime}
+              </p>
+            </div>
+          </div>
+        )}
+        
+        {lastUpdated && (
+          <div className="flex items-center text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2">
+            <span className="font-medium mr-2">Last Updated:</span>
+            <span>{lastUpdated.toLocaleString()}</span>
+          </div>
+        )}
       </div>
 
       {/* Personalized Metrics Grid */}
@@ -548,15 +528,15 @@ export const WellnessMetrics = () => {
                   </li>
                 </ul>
               </div>
-              
-              <div className="text-center pt-2">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="text-green-700 border-green-300 hover:bg-green-50"
-                >
-                  <a href="/get-started">Take Personalization Quiz</a>
-                </Button>
+                <div className="text-center pt-2">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-3">
+                  <p className="text-sm text-yellow-800 font-medium mb-2">
+                    🎯 Get Personalized Insights!
+                  </p>
+                  <p className="text-xs text-yellow-700">
+                    Take the personalization quiz by clicking on "Share your day" to receive customized wellness metrics and recommendations based on your unique needs.
+                  </p>
+                </div>
               </div>
             </>
           )}
