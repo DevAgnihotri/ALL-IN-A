@@ -1,11 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Calendar, Clock, Video, Phone, CheckCircle, MessageSquare, Download } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Video, Phone, CheckCircle, MessageSquare } from "lucide-react";
 import { format } from "date-fns";
-import { useAuth } from "@/contexts/AuthContext";
-import { BookingService, BookingRecord } from "@/lib/bookingService";
 
 interface BookingDetails {
   therapist: Therapist;
@@ -35,9 +32,6 @@ interface BookingConfirmationProps {
 }
 
 export const BookingConfirmation = ({ therapist, bookingDetails: providedBookingDetails, onBack, onBookingComplete }: BookingConfirmationProps) => {
-  const { user } = useAuth();
-  const [userBookings, setUserBookings] = useState<BookingRecord[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   
   // Use provided booking details or create mock details if not provided
   const bookingDetails = providedBookingDetails || {
@@ -45,27 +39,7 @@ export const BookingConfirmation = ({ therapist, bookingDetails: providedBooking
     date: new Date(),
     time: "2:00 PM",
     sessionType: "Video",
-  };
-
-  const loadUserBookings = useCallback(async () => {
-    if (!user) return;
-    
-    setIsLoading(true);
-    try {
-      const bookings = await BookingService.getUserBookings(user.uid);
-      setUserBookings(bookings);
-    } catch (error) {
-      console.error("Error loading user bookings:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    loadUserBookings();
-  }, [loadUserBookings]);
-
-  // Format date and time for display
+  };  // Format date and time for display
   const bookingDate = format(bookingDetails.date, "EEEE, MMMM d, yyyy");
   
   // Get session icon
@@ -80,54 +54,6 @@ export const BookingConfirmation = ({ therapist, bookingDetails: providedBooking
       default:
         return <Video className="w-4 h-4" />;
     }
-  };
-
-  // Helper function to download an .ics calendar file
-  const downloadIcsFile = () => {
-    const sessionDate = new Date(bookingDetails.date);
-    const [time, period] = bookingDetails.time.split(' ');
-    const [hours, minutes] = time.split(':').map(Number);
-    const adjustedHours = period === 'PM' && hours !== 12 ? hours + 12 : (period === 'AM' && hours === 12 ? 0 : hours);
-    
-    sessionDate.setHours(adjustedHours);
-    sessionDate.setMinutes(minutes || 0);
-    
-    const endDate = new Date(sessionDate);
-    endDate.setMinutes(sessionDate.getMinutes() + 50); // 50-minute session
-    
-    // Format dates for iCalendar
-    const formatICSDate = (date: Date) => {
-      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-    };
-    
-    const eventTitle = `Therapy Session with ${therapist.name}`;
-    const eventDescription = `${bookingDetails.sessionType} session with ${therapist.name} (${therapist.specialty}).\\n\\n${therapist.bio}\\n\\nSession Details:\\n- Type: ${bookingDetails.sessionType}\\n- Date: ${bookingDate}\\n- Time: ${bookingDetails.time}`;
-    
-    // Create iCalendar content
-    const icsContent = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//SereneSelf//EN',
-      'CALSCALE:GREGORIAN',
-      'BEGIN:VEVENT',
-      `SUMMARY:${eventTitle}`,
-      `DESCRIPTION:${eventDescription}`,
-      `DTSTART:${formatICSDate(sessionDate)}`,
-      `DTEND:${formatICSDate(endDate)}`,
-      'STATUS:CONFIRMED',
-      'TRANSP:OPAQUE',
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
-    
-    // Create and trigger download
-    const blob = new Blob([icsContent], { type: 'text/calendar' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `therapy-session-${format(bookingDetails.date, 'yyyy-MM-dd')}.ics`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   return (
@@ -219,66 +145,7 @@ export const BookingConfirmation = ({ therapist, bookingDetails: providedBooking
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Actions */}
-        <Card>
-          <CardHeader>
-            <h3 className="text-lg font-semibold">Next Steps</h3>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-3">
-              <p className="text-gray-600">
-                Your session is confirmed! Here's what you can do:
-              </p>
-              
-              <Button 
-                onClick={downloadIcsFile}
-                variant="outline" 
-                className="w-full"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Add to Calendar (.ics)
-              </Button>
-              
-              <div className="text-sm text-gray-500 space-y-1">
-                <p>• You'll receive a confirmation email shortly</p>
-                <p>• Session link will be provided before your appointment</p>
-                <p>• Please join 5 minutes early</p>
-                <p>• You can reschedule up to 24 hours before the session</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Your Bookings Summary */}
-        {user && (
-          <Card>
-            <CardHeader>
-              <h3 className="text-lg font-semibold">Your Booking Summary</h3>
-            </CardHeader>
-            <CardContent>
-              {isLoading ? (
-                <p className="text-gray-500">Loading your bookings...</p>
-              ) : (
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-600">
-                    Total confirmed bookings: <span className="font-medium">{userBookings.length}/5</span>
-                  </p>
-                  {userBookings.length >= 4 && (
-                    <p className="text-sm text-amber-600">
-                      {userBookings.length === 5 
-                        ? "You've reached the maximum booking limit. Cancel an existing booking to make a new one."
-                        : "You have 1 booking slot remaining."
-                      }
-                    </p>
-                  )}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        )}
+          </CardContent>        </Card>
       </div>
     </div>
   );
