@@ -18,15 +18,14 @@ const WhatsAppIcon = () => (
 );
 
 export const Communities = () => {
-  const navigate = useNavigate();
-  const communities = [
+  const navigate = useNavigate();  const communities = [
     {
       name: "WhatsApp Support",
       description: "Join our daily mental wellness check-ins and peer support group. Share experiences and get immediate support from our community.",
       icon: WhatsAppIcon,
       color: "from-green-500 to-green-600",
       link: "https://chat.whatsapp.com/example",
-      members: "2.5k+ members"
+      members: "80+ members"
     },
     {
       name: "LinkedIn Network", 
@@ -34,7 +33,7 @@ export const Communities = () => {
       icon: Linkedin,
       color: "from-blue-600 to-blue-700",
       link: "https://linkedin.com/groups/mental-wellness",
-      members: "5k+ professionals"
+      members: "65+ professionals"
     },
     {
       name: "Discord Server",
@@ -42,7 +41,7 @@ export const Communities = () => {
       icon: DiscordIcon,
       color: "from-indigo-500 to-purple-600", 
       link: "https://discord.gg/mentalwellness",
-      members: "8k+ active users"
+      members: "95+ active users"
     },
     {
       name: "Instagram Community",
@@ -50,7 +49,7 @@ export const Communities = () => {
       icon: Instagram,
       color: "from-pink-500 to-orange-500",
       link: "https://instagram.com/sereneself",
-      members: "12k+ followers"
+      members: "85+ followers"
     }
   ];
 

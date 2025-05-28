@@ -63,10 +63,9 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onClick }) => {
             <div className="flex items-center space-x-1">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
               <span>{course.rating}</span>
-            </div>
-            <div className="flex items-center space-x-1">
+            </div>            <div className="flex items-center space-x-1">
               <Users className="w-4 h-4" />
-              <span>{course.enrolledCount.toLocaleString()}</span>
+              <span>{course.enrolledCount.toLocaleString()} members enrolled</span>
             </div>
           </div>
         </CardHeader>

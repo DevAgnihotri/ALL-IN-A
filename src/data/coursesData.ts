@@ -53,10 +53,9 @@ export const coursesData: Course[] = [
     description: 'Learn evidence-based techniques to understand and manage anxiety in daily life.',
     category: 'anxiety',
     duration: '2.5 hours',
-    difficulty: 'beginner',
-    instructor: 'Dr. Sarah Johnson',
+    difficulty: 'beginner',    instructor: 'Dr. Sarah Johnson',
     rating: 4.8,
-    enrolledCount: 1234,
+    enrolledCount: 78,
     thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
     modules: [
       {
@@ -182,9 +181,8 @@ Start with 5-10 minutes daily of mindful awareness. Notice your thoughts without
     category: 'mindfulness',
     duration: '3 hours',
     difficulty: 'beginner',
-    instructor: 'Dr. Michael Chen',
-    rating: 4.9,
-    enrolledCount: 2156,
+    instructor: 'Dr. Michael Chen',    rating: 4.9,
+    enrolledCount: 92,
     thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
     modules: [
       {
@@ -232,9 +230,8 @@ Start with 5-10 minutes daily of mindful awareness. Notice your thoughts without
     category: 'depression',
     duration: '4 hours',
     difficulty: 'intermediate',
-    instructor: 'Dr. Emily Rodriguez',
-    rating: 4.7,
-    enrolledCount: 987,
+    instructor: 'Dr. Emily Rodriguez',    rating: 4.7,
+    enrolledCount: 56,
     thumbnail: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop',
     modules: [
       {
@@ -264,9 +261,8 @@ Start with 5-10 minutes daily of mindful awareness. Notice your thoughts without
     category: 'stress',
     duration: '2 hours',
     difficulty: 'beginner',
-    instructor: 'Dr. Alex Thompson',
-    rating: 4.6,
-    enrolledCount: 1567,
+    instructor: 'Dr. Alex Thompson',    rating: 4.6,
+    enrolledCount: 73,
     thumbnail: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     modules: [
       {
